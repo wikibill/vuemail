@@ -1,0 +1,78 @@
+<!--  -->
+<template>
+  <!-- 所有的item都展示一样的文字图片 -->
+  <div class="TabBarItem">
+    <!-- 插槽外边包装一层div 防止渲染出错 -->
+    <!-- <div><slot name="active"></slot></div> -->
+    <div @click="itemClick">
+      <slot name="item-icon"></slot>
+    </div>
+    <div @click="itemClick">
+      <slot name="item-text"></slot>
+    </div>
+    <!-- <slot name="item-icon"></slot>
+    <slot name="item-text"></slot>-->
+    <!-- <img src="../../assets/images/home-2-line.png" alt=""> -->
+    <!-- <div class="tab-bar-item">首页</div> -->
+    <!-- <div>首页</div> -->
+  </div>
+</template>
+
+<script>
+//这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
+//例如：import 《组件名称》 from '《组件路径》';
+
+export default {
+  //import引入的组件需要注入到对象中才能使用
+  name: "TabBarItem",
+  components: {},
+  props:{
+    path:String
+  },
+  data() {
+    //这里存放数据
+    return {
+      // isActive: true,
+    };
+  },
+  //监听属性 类似于data概念
+  computed: {},
+  //监控data中的数据变化
+  watch: {},
+  //方法集合
+  methods: {
+    itemClick(){
+      this.$router.push(this.path)
+    }
+  },
+  //生命周期 - 创建完成（可以访问当前this实例）
+  created() {},
+  //生命周期 - 挂载完成（可以访问DOM元素）
+  mounted() {},
+  beforeCreate() {}, //生命周期 - 创建之前
+  beforeMount() {}, //生命周期 - 挂载之前
+  beforeUpdate() {}, //生命周期 - 更新之前
+  updated() {}, //生命周期 - 更新之后
+  beforeDestroy() {}, //生命周期 - 销毁之前
+  destroyed() {}, //生命周期 - 销毁完成
+  activated() {}, //如果页面有keep-alive缓存功能，这个函数会触发
+};
+</script>
+<style>
+.TabBarItem {
+  flex: 1;
+  text-align: center;
+  height: 49px;
+  font-size: 14px;
+  /* margin-top: 10px; */
+}
+.TabBarItem img {
+  margin-top: 3px;
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+}
+.active {
+  color: red;
+}
+</style>
