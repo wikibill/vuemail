@@ -1,35 +1,18 @@
 <!--  -->
 <template>
-<div class='HomeSwiper'>
-    <swiper>
-      <swiper-item v-for="(item,index) in banners" :key="index">
-        <a :href="item.link">
-          <img :src="item.image" />
-        </a>
-      </swiper-item>
-    </swiper>
+<div class='featureView'>
+
 </div>
 </template>
 
 <script>
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》';
-import{Swiper,SwiperItem} from '@/components/common/swiper'
+
 export default {
 //import引入的组件需要注入到对象中才能使用
-name:'HomeSwiper',
-props:{
-  banners:{
-    type:Array,
-    default(){
-      return []
-    }
-  }
-},
-components: {
-  Swiper,
-  SwiperItem,
-},
+name:'featureView',
+components: {},
 data() {
 //这里存放数据
 return {
@@ -62,5 +45,11 @@ activated() {}, //如果页面有keep-alive缓存功能，这个函数会触发
 }
 </script>
 <style>
-
+.featureView{
+  background-color: pink;
+  width: 100%;
+  height: 200px;
+  /* position: fixed;
+  z-index: 999; */
+}
 </style>
