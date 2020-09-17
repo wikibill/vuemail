@@ -7,7 +7,8 @@
     <home-swiper :banners="banners"></home-swiper>
     <home-recommend-view :recommends="recommends"></home-recommend-view>
     <feature-view></feature-view>
-    <tab-control :titles="['流行','新款','精选']" class="tab-control"></tab-control>
+    <tab-control :titles="['流行','新款','精选']" class="tab-control" @tabClick="tabClick"></tab-control>
+    <goods-list :goods="showGoods"></goods-list>
   </div>
 </template>
 
@@ -18,6 +19,7 @@ import FeatureView from "@/views/home/childComps/FeatureView";
 
 import NavBar from "@/components/common/navbar/NavBar";
 import TabControl from "@/components/content/tabControl/TabControl";
+import GoodsList from "@/components/content/goods/GoodsList";
 
 import { getHomeMultidata, getHomeGoods } from "@/network/home";
 
@@ -33,6 +35,7 @@ export default {
     HomeRecommendView,
     FeatureView,
     TabControl,
+    GoodsList,
   },
   data() {
     //这里存放数据
@@ -44,14 +47,35 @@ export default {
         new: { page: 0, list: [] },
         sell: { page: 0, list: [] },
       },
+      currentType:'pop',
     };
   },
+  computed:{
+    showGoods(){
+      return this.goods[this.currentType].list
+    }
+  },
   //监听属性 类似于data概念
-  computed: {},
   //监控data中的数据变化
   watch: {},
   //方法集合
   methods: {
+    //事件监听的相关方法
+    tabClick(index){
+      console.log(index);
+      switch(index){
+        case 0:
+          this.currentType = 'pop'
+          break
+        case 1:
+          this.currentType ='new'
+          break
+        case 2:
+          this.currentType = 'sell'
+          break
+      }
+    },
+    //网络请求相关的方法
     getHomeMultidata() {
       getHomeMultidata().then((res) => {
         // console.log(res);
@@ -110,7 +134,7 @@ export default {
 }
 .tab-control {
   position: sticky;
-  top: 100px;
+  top: 44px;
   background-color: #ffffff;
 }
 </style>

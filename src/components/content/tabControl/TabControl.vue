@@ -14,7 +14,6 @@
 </template>
 
 <script>
-
 export default {
   //import引入的组件需要注入到对象中才能使用
   name: "tab-control",
@@ -39,9 +38,10 @@ export default {
   watch: {},
   //方法集合
   methods: {
-    itemClick(index){
-      this.currentIndex = index
-    }
+    itemClick(index) {
+      this.currentIndex = index;
+      this.$emit("tabClick", index);
+    },
   },
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {},
@@ -61,7 +61,7 @@ export default {
   display: flex;
   text-align: center;
   font-size: 15px;
-  height: 800px;
+  height: 44px;
   line-height: 40px;
 }
 .tab-control-item {
