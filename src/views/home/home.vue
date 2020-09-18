@@ -4,11 +4,11 @@
     <nav-bar class="home-nav">
       <div slot="center">购物街</div>
     </nav-bar>
-    <home-swiper :banners="banners"></home-swiper>
-    <home-recommend-view :recommends="recommends"></home-recommend-view>
-    <feature-view></feature-view>
-    <tab-control :titles="['流行','新款','精选']" class="tab-control" @tabClick="tabClick"></tab-control>
-    <goods-list :goods="showGoods"></goods-list>
+   <home-swiper :banners="banners"></home-swiper>
+   <home-recommend-view :recommends="recommends"></home-recommend-view>
+   <feature-view></feature-view>
+   <tab-control :titles="['流行','新款','精选']" class="tab-control" @tabClick="tabClick"></tab-control>
+   <goods-list :goods="showGoods"></goods-list>
   </div>
 </template>
 
@@ -23,6 +23,10 @@ import GoodsList from "@/components/content/goods/GoodsList";
 
 import { getHomeMultidata, getHomeGoods } from "@/network/home";
 
+
+// import BScroll from 'better-scroll'
+import Scroll from '@/components/common/scroll/Scroll'
+
 // import Swiper from '@/components/common/swiper/Swiper'
 // import SwiperItem from '@/components/common/swiper/SwiperItem'
 // import { Swiper, SwiperItem } from "@/components/common/swiper";
@@ -36,6 +40,8 @@ export default {
     FeatureView,
     TabControl,
     GoodsList,
+    Scroll
+
   },
   data() {
     //这里存放数据
@@ -116,9 +122,11 @@ export default {
   activated() {}, //如果页面有keep-alive缓存功能，这个函数会触发
 };
 </script>
-<style>
+<!-- scoped 私有 作用域 -->
+<style scoped>
 .home {
   padding-top: 44px;
+  /* height: 100vh; */
 }
 
 .home-nav {
@@ -136,5 +144,14 @@ export default {
   position: sticky;
   top: 44px;
   background-color: #ffffff;
+}
+.content{
+/* height: 300px; */
+/* margin-top: 44px; */
+/* overflow: hidden; */
+overflow: hidden;
+position: absolute;
+top: 44px;
+bottom: 49px;
 }
 </style>

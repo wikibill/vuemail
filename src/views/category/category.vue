@@ -139,14 +139,18 @@ export default {
     //0,1都是不侦测位置
     //2 不侦测惯性滚动
     //3 所有滚动都侦测
-    this.scroll = new BScroll(document.querySelector('.wrapper'),{
-      probeType:2,
+    this.scroll = new BScroll('.wrapper',{
+      probeType:3,
       click:true,
-      pullUpLoad:{
-        threshold:50
-      }
+      pullUpLoad:true
     })
     // console.log(document.querySelector('.wrapper'));
+    this.scroll.on('scroll',(position)=>{
+      console.log(position);
+    })
+    this.scroll.on('pullingUp',()=>{
+      console.log('上拉加载更多')
+    })
   },
   beforeCreate() {}, //生命周期 - 创建之前
   beforeMount() {}, //生命周期 - 挂载之前
