@@ -9,6 +9,7 @@
    <feature-view></feature-view>
    <tab-control :titles="['流行','新款','精选']" class="tab-control" @tabClick="tabClick"></tab-control>
    <goods-list :goods="showGoods"></goods-list>
+    <back-top @click.native="backClick()"></back-top>
   </div>
 </template>
 
@@ -20,12 +21,13 @@ import FeatureView from "@/views/home/childComps/FeatureView";
 import NavBar from "@/components/common/navbar/NavBar";
 import TabControl from "@/components/content/tabControl/TabControl";
 import GoodsList from "@/components/content/goods/GoodsList";
+import Scroll from '@/components/common/scroll/Scroll'
+import BackTop from "@/components/content/backTop/BackTop";
 
 import { getHomeMultidata, getHomeGoods } from "@/network/home";
 
 
 // import BScroll from 'better-scroll'
-import Scroll from '@/components/common/scroll/Scroll'
 
 // import Swiper from '@/components/common/swiper/Swiper'
 // import SwiperItem from '@/components/common/swiper/SwiperItem'
@@ -34,13 +36,14 @@ export default {
   //import引入的组件需要注入到对象中才能使用
   name: "home",
   components: {
+    BackTop,
     NavBar,
     HomeSwiper,
     HomeRecommendView,
     FeatureView,
     TabControl,
     GoodsList,
-    Scroll
+    Scroll,
 
   },
   data() {
@@ -68,7 +71,7 @@ export default {
   methods: {
     //事件监听的相关方法
     tabClick(index){
-      console.log(index);
+      // console.log(index);
       switch(index){
         case 0:
           this.currentType = 'pop'
@@ -80,6 +83,9 @@ export default {
           this.currentType = 'sell'
           break
       }
+    },
+    backClick(){
+      console.log('click')
     },
     //网络请求相关的方法
     getHomeMultidata() {
